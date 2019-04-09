@@ -1,10 +1,13 @@
 import React from 'react';
+import Dashboard from './Dashboard';
+import Display from './Display';
 
 function Container() {
   return (
-    <div>
-        hi
-    </div>
+    <>
+      <Dashboard />
+      <Display />
+    </>
   );
 }
 
