@@ -1,9 +1,13 @@
 import React from 'react';
 
 function Display() {
+  const ball = () => {
+    
+  };
+
   return (
     <div>
-        hi
+      <button onClick={ball}>Next ball</button>
     </div>
   );
 }
