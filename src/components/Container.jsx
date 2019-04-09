@@ -3,8 +3,17 @@ import Dashboard from './Dashboard';
 import Display from './Display';
 
 function Container() {
+  const [currentPitch, setCurrentPitch] = useState();
   const [balls, setBalls] = useState(0);
   const [strikes, setStrikes] = useState(0);
+
+  const rand = () => Math.floor(Math.random() * 4);
+
+  const _pitch = () => {
+    const type = ["strike", "ball", "foul", "hit"];
+    const run = type[rand()];
+    setCurrentPitch(run);
+  };
 
   useEffect(() => {
     if (balls === 4) {
@@ -18,10 +27,31 @@ function Container() {
     }
   }, [balls, strikes]);
 
+  useEffect(() => {
+    switch (currentPitch) {
+      case "ball":
+        return setBalls(current => current + 1);
+      case "strike":
+        return setStrikes(current => current + 1);
+      case "hit":
+        setStrikes(0);
+        return setBalls(0);
+      case "foul":
+        return setBalls(current => current + 1);
+      default:
+    }
+  }, [currentPitch]);
+
   return (
     <>
-      <Dashboard />
-      <Display />
+      <Dashboard
+        balls={balls}
+        strikes={strikes}
+      />
+      <Display
+        currentPitch={currentPitch}
+        _pitch={_pitch}
+      />
     </>
   );
 }

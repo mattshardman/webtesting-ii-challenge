@@ -1,9 +1,14 @@
 import React from 'react';
 
-function Dashboard() {
+function Dashboard({ balls, strikes }) {
   return (
     <div>
-        hi
+      <div>
+           Balls: {balls}
+      </div>
+      <div>
+            Strikes: {strikes}
+      </div>
     </div>
   );
 }

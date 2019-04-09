@@ -5,7 +5,8 @@ import Display from './Display';
 afterEach(rt.cleanup);
 
 describe('display', () => {
-  it('contains a button', () => {
-    const display = rt.render(<Display />);
+  it('displays current pitch', () => {
+    const display = rt.render(<Display currentPitch="hit" />);
+    expect(display.getByText(/hit/i));
   });
 });

@@ -1,13 +1,12 @@
 import React from 'react';
 
-function Display() {
-  const ball = () => {
-    
-  };
-
+function Display({ _pitch, currentPitch }) {
   return (
     <div>
-      <button onClick={ball}>Next ball</button>
+      <div>
+        {currentPitch}
+      </div>
+      <button onClick={_pitch}>Next ball</button>
     </div>
   );
 }

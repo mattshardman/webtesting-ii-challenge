@@ -24849,13 +24849,114 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dashboard */ "./src/components/Dashboard.jsx");
+/* harmony import */ var _Display__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Display */ "./src/components/Display.jsx");
+
+
 
 
 function Container() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "hi");
+  const [currentPitch, setCurrentPitch] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])();
+  const [balls, setBalls] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  const [strikes, setStrikes] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+
+  const rand = () => Math.floor(Math.random() * 4);
+
+  const _pitch = () => {
+    const type = ["strike", "ball", "foul", "hit"];
+    const run = type[rand()];
+    setCurrentPitch(run);
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    if (balls === 4) {
+      setBalls(0);
+      setStrikes(0);
+    }
+
+    if (strikes === 3) {
+      setBalls(0);
+      setStrikes(0);
+    }
+  }, [balls, strikes]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    switch (currentPitch) {
+      case "ball":
+        return setBalls(current => current + 1);
+
+      case "strike":
+        return setStrikes(current => current + 1);
+
+      case "hit":
+        setStrikes(0);
+        return setBalls(0);
+
+      case "foul":
+        return setBalls(current => current + 1);
+
+      default:
+    }
+  }, [currentPitch]);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Dashboard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    balls: balls,
+    strikes: strikes
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Display__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    currentPitch: currentPitch,
+    _pitch: _pitch
+  }));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Container);
+
+/***/ }),
+
+/***/ "./src/components/Dashboard.jsx":
+/*!**************************************!*\
+  !*** ./src/components/Dashboard.jsx ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function Dashboard({
+  balls,
+  strikes
+}) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Balls: ", balls), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Strikes: ", strikes));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Dashboard);
+
+/***/ }),
+
+/***/ "./src/components/Display.jsx":
+/*!************************************!*\
+  !*** ./src/components/Display.jsx ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function Display({
+  _pitch,
+  currentPitch
+}) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, currentPitch), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: _pitch
+  }, "Next ball"));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Display);
 
 /***/ })
 
