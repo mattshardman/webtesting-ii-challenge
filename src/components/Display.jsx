@@ -7,14 +7,13 @@ const CurrentPitch = styled.div`
     border: 1px solid #eaeaea;
 `;
 
-function Display({ _pitch, _hit, swing }) {
+function Display({ _pitch, currentPitch }) {
   return (
     <div>
       <CurrentPitch data-testid="current-pitch">
-        {swing}
+        {currentPitch}
       </CurrentPitch>
       <button onClick={_pitch}>Next ball</button>
-      <button onClick={_hit}>Hit</button>
     </div>
   );
 }

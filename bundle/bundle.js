@@ -100,6 +100,20 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./lib/utils.js":
+/*!**********************!*\
+  !*** ./lib/utils.js ***!
+  \**********************/
+/*! exports provided: rand */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rand", function() { return rand; });
+const rand = () => Math.floor(Math.random() * 4);
+
+/***/ }),
+
 /***/ "./node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js":
 /*!*******************************************************************************!*\
   !*** ./node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js ***!
@@ -28762,6 +28776,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dashboard */ "./src/components/Dashboard.jsx");
 /* harmony import */ var _Display__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Display */ "./src/components/Display.jsx");
+/* harmony import */ var _lib_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../lib/utils */ "./lib/utils.js");
+
 
 
 
@@ -28771,11 +28787,9 @@ function Container() {
   const [balls, setBalls] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
   const [strikes, setStrikes] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
 
-  const rand = () => Math.floor(Math.random() * 4);
-
   const _pitch = () => {
     const type = ["strike", "ball", "foul", "hit"];
-    const run = type[rand()];
+    const run = type[Object(_lib_utils__WEBPACK_IMPORTED_MODULE_3__["rand"])()];
     setCurrentPitch(run);
   };
 
@@ -28867,16 +28881,13 @@ const CurrentPitch = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].d
 
 function Display({
   _pitch,
-  _hit,
-  swing
+  currentPitch
 }) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CurrentPitch, {
     "data-testid": "current-pitch"
-  }, swing), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, currentPitch), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: _pitch
-  }, "Next ball"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: _hit
-  }, "Hit"));
+  }, "Next ball"));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Display);

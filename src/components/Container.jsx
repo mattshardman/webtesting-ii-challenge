@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Dashboard from './Dashboard';
 import Display from './Display';
 
+import { rand } from '../../lib/utils';
+
 function Container() {
   const [currentPitch, setCurrentPitch] = useState();
   const [balls, setBalls] = useState(0);
   const [strikes, setStrikes] = useState(0);
-
-  const rand = () => Math.floor(Math.random() * 4);
 
   const _pitch = () => {
     const type = ["strike", "ball", "foul", "hit"];
